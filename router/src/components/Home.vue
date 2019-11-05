@@ -8,7 +8,9 @@ export default {
   },
   computed: {},
   created() {},
-  mounted() {},
+  mounted() {
+    // console.log(this.$route);
+  },
   components: {}
 };
 </script>
