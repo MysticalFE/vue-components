@@ -41,7 +41,7 @@ class Router {
       window.addEventListener("load", () => {
         this.history.path = location.pathname;
       });
-      window.addEventListener("hashchange", () => {
+      window.addEventListener("popstate", () => {
         this.history.path = location.pathname;
       });
     }
