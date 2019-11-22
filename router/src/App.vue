@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    app
-    <router-link to="/home">home</router-link>
+    <h5>app</h5>
+    <router-link to="/home" @touchstart="handleClick" @touchend="touch">home</router-link>
 
     <router-link to="/about">about</router-link>
     <router-view></router-view>
@@ -14,6 +14,15 @@ export default {
   mounted() {
     // console.log(this.$router);
     // console.log(this.$route);
+  },
+  methods: {
+    handleClick(e) {
+      console.log(111);
+      console.log(e);
+    },
+    touch(e) {
+      console.log(e);
+    }
   },
   components: {}
 };

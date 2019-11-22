@@ -4,7 +4,7 @@
 //   { path: "/about", component: About }
 // ]
 //转变为{"/home": Home, "/about": About} 方便后续
-
+import Link from "./Link";
 class HistoryRoute {
   constructor() {
     this.path = null;
@@ -76,8 +76,8 @@ class Router {
 }
 
 //路由注入install方法，拿到vue实例
-Router.install = function(Vue, options) {
-  console.log(Vue, options);
+Router.install = function(Vue) {
+  // console.log(Vue, options);
   Vue.mixin({
     beforeCreate() {
       // console.log(3442432);
@@ -109,29 +109,7 @@ Router.install = function(Vue, options) {
     }
   });
   //注册两个组件
-  Vue.component("router-link", {
-    functional: true,
-    props: {
-      to: String,
-      tag: String
-    },
-    render(createElement, context) {
-      console.log(context, "-----");
-      const to = context.props.to,
-        mode = context.parent._root._router.mode;
-      const href = mode === "hash" ? `#${to}` : to;
-      const tag = context.tag ? context.tag : "a";
-      return createElement(
-        tag,
-        {
-          attrs: {
-            href
-          }
-        },
-        context.children
-      );
-    }
-  });
+  Vue.component("router-link", Link);
   Vue.component("router-view", {
     render(createElement) {
       console.log(this);
