@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h5>app</h5>
-    <router-link to="/home" @touchstart="handleClick" @touchend="touch">home</router-link>
+    <router-link tag="span" to="/home" @click="handleClick" @touchend="touch">home</router-link>
 
     <router-link to="/about">about</router-link>
     <router-view></router-view>

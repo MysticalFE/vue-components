@@ -4,54 +4,29 @@
 //   { path: "/about", component: About }
 // ]
 //转变为{"/home": Home, "/about": About} 方便后续
+import { HashHistory } from "./hash";
+import { HTML5History } from "./history";
 import Link from "./Link";
-class HistoryRoute {
-  constructor() {
-    this.path = null;
-  }
-}
+import View from "./View";
 class Router {
   constructor(options) {
     this.mode = options.mode || "hash"; //mode
     this.routes = options.routes || []; //路由表
+    this.options = options;
+    this.history = Object.create(null);
     this.routersMap = this.createMap(this.routes);
     console.log(this.routersMap);
-    this.history = new HistoryRoute();
+    // this.history = new HistoryRoute();
     this.init();
   }
   //页面路由初始化操作
   init() {
     //首先判断路由模式
     if (this.mode === "hash") {
-      if (!location.hash) location.hash = "/";
-      // const hashPath = location.hash.slice(1);
-      // this.addEvent("load", location.hash.slice(1));
-      // this.addEvent("hashchange", location.hash.slice(1));
-      window.addEventListener("load", () => {
-        this.history.path = location.hash.slice(1);
-      });
-      window.addEventListener("hashchange", () => {
-        this.history.path = location.hash.slice(1);
-      });
+      this.history = new HashHistory(this);
     } else {
-      // let historyPath = location.pathname;
-      if (!location.pathname) location.pathname = "/";
-      // this.addEvent("load", location.pathname);
-      // this.addEvent("popstate", location.pathname);
-      window.addEventListener("load", () => {
-        this.history.path = location.pathname;
-      });
-      window.addEventListener("popstate", () => {
-        this.history.path = location.pathname;
-      });
+      this.history = new HTML5History(this);
     }
-  }
-  //路由事件注册
-  addEvent(type, path) {
-    window.addEventListener(type, () => {
-      this.history.path = path;
-      console.log(location.hash.slice(1));
-    });
   }
   //对原始路由表的处理
   createMap(r) {
@@ -110,14 +85,6 @@ Router.install = function(Vue) {
   });
   //注册两个组件
   Vue.component("router-link", Link);
-  Vue.component("router-view", {
-    render(createElement) {
-      console.log(this);
-      const path = this._self._root._router.history.path;
-      const currentComponent = this._self._root._router.routersMap[path];
-      console.log(path);
-      return createElement(currentComponent);
-    }
-  });
+  Vue.component("router-view", View);
 };
 export default Router;
