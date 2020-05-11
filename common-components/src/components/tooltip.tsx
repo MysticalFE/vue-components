@@ -1,5 +1,4 @@
 import Popper from "popper.js";
-import "reflect-metadata";
 import { Component, Vue, Prop } from "vue-property-decorator";
 
 export interface TooltipModelProp {

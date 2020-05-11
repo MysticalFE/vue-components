@@ -1,4 +1,5 @@
 import Vue from "vue";
+import "reflect-metadata";
 
 import "./directives";
 import { Tooltip, VLoading } from "./components";
