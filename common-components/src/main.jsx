@@ -2,7 +2,7 @@ import Vue from "vue";
 import "reflect-metadata";
 
 import "./directives";
-import { Tooltip, VLoading } from "./components";
+import { Tooltip, VLoading, VProgressbar } from "./components";
 import { _updateVueInstance } from "./services";
 import APP from "./App.vue";
 
@@ -25,6 +25,7 @@ new Vue({
     return (
       <div id="app">
         <APP />
+        <VProgressbar ref="progressbar" />
         {this.tooltips.map((attrs) => (
           <Tooltip {...{ attrs }} />
         ))}
