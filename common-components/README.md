@@ -1,29 +1,13 @@
 # common-components
 
-## Project setup
-```
-npm install
-```
+## 自定义标签路由组件
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## loading组件
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## 基于elementUI dialog的modal组件
 
-### Run your unit tests
-```
-npm run test:unit
-```
+## 顶部进度条progressbar 组件
 
-### Lints and fixes files
-```
-npm run lint
-```
+## 数据滚动组件
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## tooltip 组件
