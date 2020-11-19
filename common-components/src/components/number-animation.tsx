@@ -9,11 +9,22 @@ export class NumberAnimation extends Vue {
   @Prop() readonly animationDuration: number = 500;
   @Prop() readonly useKw: boolean = false;
   @Prop() readonly use99: boolean = false;
+  @Prop() readonly sliceToThousand: boolean = false;
 
   raf: number = 0;
 
   mounted() {
     this.setValue(this.value);
+  }
+
+  private sliceToThree(num = 0) {
+    let numStr = String(num), result = '';
+    while(numStr.length > 3) {
+      result = `${numStr.slice(-3)}${result}`;
+      numStr = numStr.slice(0, numStr.length - 3);
+    }
+    if(numStr) result = numStr + result;
+    return result;
   }
 
   private setValue(value: number) {
@@ -36,7 +47,7 @@ export class NumberAnimation extends Vue {
       }
     }
     const postfix = curPostfix ? curPostfix : this.postfix;
-    this.$el.innerHTML = `${value}<i class="font-postfix">${postfix}</i>`;
+    this.$el.innerHTML = this.sliceToThousand ? `${this.sliceToThree(value)}<i class="font-postfix">${postfix}</i>`: `${value}<i class="font-postfix">${postfix}</i>`;
   }
 
   @Watch("value")
