@@ -13,6 +13,7 @@ new Vue({
     return {
       modals: [],
       tooltips: [],
+      notifys: [],
       loading: {
         status: 0,
         text: "",
@@ -25,6 +26,7 @@ new Vue({
   render() {
     return (
       <div id="app">
+        {this.notifys.map(attrs => <top-notify {...{ attrs }} />)}
         <APP />
         <VProgressbar ref="progressbar" />
         {this.modals.map((attrs) => (
