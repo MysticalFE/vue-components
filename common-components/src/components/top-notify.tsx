@@ -1,4 +1,4 @@
-import { Component, Prop, VueComponentBase } from '../VueComponentBase';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 export interface TopNotifyModel {
   title: string;
@@ -11,12 +11,12 @@ export interface TopNotifyModel {
 @Component({
   name: 'SharpTooltip',
 })
-export class TopNotify extends VueComponentBase implements TopNotifyModel {
-  @Prop() title: string;
+export class TopNotify extends Vue implements TopNotifyModel {
+  @Prop() title!: string;
   @Prop() type = 'error';
   @Prop() showIcon = true;
-  @Prop() popperClass: string;
-  @Prop() close: () => void;
+  @Prop() popperClass!: string;
+  @Prop() close!: () => void;
 
   render(h) {
     return (
