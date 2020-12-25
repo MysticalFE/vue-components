@@ -1,0 +1,26 @@
+.flip-move {
+  transition: transform 0.2s;
+}
+
+.v-drag-sort {
+  .item-box {
+    position: relative;
+    display: flex;
+    background: #fff;
+
+    .handle-box {
+      cursor: move;
+    }
+
+    .handle {
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .drag_item__ghost {
+    background-color: #ecf8ff;
+  }
+}
